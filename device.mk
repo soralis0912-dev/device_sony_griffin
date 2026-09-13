@@ -25,6 +25,13 @@
 # Inherit from sony sm8150-common
 $(call inherit-product, device/sony/sm8150-common/common.mk)
 
+# Device info
+# Three physical rear sensors, all 12 MP: imx445 wide, s5k3m3 tele and s5k4h7
+# ultra wide.  Left to the camera HAL the logical cameras built on top of them
+# would be counted too, so list the sensors rather than what it reports.
+CAMERA_REAR_INFO := 12,12,12
+CAMERA_FRONT_INFO := 8
+
 # Boot animation
 TARGET_SCREEN_HEIGHT := 3840
 TARGET_SCREEN_WIDTH := 1644
