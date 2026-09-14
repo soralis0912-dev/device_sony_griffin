@@ -487,3 +487,34 @@ vendor/etc/wifi/bdwlan.bin
 
 # WLAN
 vendor/etc/wifi/wifi_txpower.conf
+
+# FeliCa configuration
+# common.cfg carries the model name as hex and the secure element answers to
+# the one it was formatted against, so each SKU needs its own copy.  They all
+# live at the same path in their own firmware, hence src:dst with TRYSRCFIRST:
+# extract-utils looks for dst before src, and felica_<model> exists in no dump.
+# Only the Xperia 1 SKUs are listed here - FelicaParts builds its list from
+# what is installed, so a handset is not offered a model it cannot be.
+#
+# Extract them one at a time, passing -s so the vendor directory is not wiped
+# between runs:
+#
+#   ./extract-files.py -s "FeliCa configuration - SO-03L" <SO-03L dump>
+#   ./extract-files.py -s "FeliCa configuration - SOV40" <SOV40 dump>
+#   ./extract-files.py -s "FeliCa configuration - 802SO" <802SO dump>
+
+# FeliCa configuration - SO-03L
+system/etc/felica/common.cfg:vendor/etc/felica_SO-03L/common.cfg;TRYSRCFIRST
+system/etc/felica/mfm.cfg:vendor/etc/felica_SO-03L/mfm.cfg;TRYSRCFIRST
+system/etc/felica/mfs.cfg:vendor/etc/felica_SO-03L/mfs.cfg;TRYSRCFIRST
+
+# FeliCa configuration - SOV40
+system/etc/felica/common.cfg:vendor/etc/felica_SOV40/common.cfg;TRYSRCFIRST
+system/etc/felica/mfm.cfg:vendor/etc/felica_SOV40/mfm.cfg;TRYSRCFIRST
+system/etc/felica/mfs.cfg:vendor/etc/felica_SOV40/mfs.cfg;TRYSRCFIRST
+
+# FeliCa configuration - 802SO
+system/etc/felica/common.cfg:vendor/etc/felica_802SO/common.cfg;TRYSRCFIRST
+system/etc/felica/mfm.cfg:vendor/etc/felica_802SO/mfm.cfg;TRYSRCFIRST
+system/etc/felica/mfs.cfg:vendor/etc/felica_802SO/mfs.cfg;TRYSRCFIRST
+
