@@ -518,3 +518,36 @@ system/etc/felica/common.cfg:vendor/etc/felica_802SO/common.cfg;TRYSRCFIRST
 system/etc/felica/mfm.cfg:vendor/etc/felica_802SO/mfm.cfg;TRYSRCFIRST
 system/etc/felica/mfs.cfg:vendor/etc/felica_802SO/mfs.cfg;TRYSRCFIRST
 
+# ADSP modules
+# The hexagon skeletons are signed against the dsp image the handset ships and
+# griffin's do not verify on bahamut.  The camera provider then dies in its
+# bokeh thread and takes every camera device with it:
+#
+#   dynamic loading failed for somc_cornfrosty on domain 3
+#       (dlerror signature verify start failed for libsomc_cornfrosty_skel.so)
+#   vendor.somc.hardware.camera.provider@1.0-service: SIGSEGV in excal:BokehComp
+#   cameraserver: Camera provider 'internal/0-0' has died; removing it
+#
+# They do not vary by carrier - SO-03L and the global J9110 are byte identical -
+# so this is a per handset list and belongs here rather than in sm8150-common.
+vendor/lib/rfsa/adsp/capi_v2_aptX_CLHDAD_Encoder.so
+vendor/lib/rfsa/adsp/libVC1Dec.so
+vendor/lib/rfsa/adsp/libVC1DecDsp_skel.so
+vendor/lib/rfsa/adsp/libapps_mem_heap.so
+vendor/lib/rfsa/adsp/libcamera_nn_skel.so
+vendor/lib/rfsa/adsp/libcvpdsp_skel.so
+vendor/lib/rfsa/adsp/libdspCV_skel.so
+vendor/lib/rfsa/adsp/libdsp_streamer_add_constant.so
+vendor/lib/rfsa/adsp/libdsp_streamer_binning.so
+vendor/lib/rfsa/adsp/libdsp_streamer_skel.so
+vendor/lib/rfsa/adsp/libfastcvadsp.so
+vendor/lib/rfsa/adsp/libfastcvdsp_skel.so
+vendor/lib/rfsa/adsp/libhalide_hexagon_remote_skel.so
+vendor/lib/rfsa/adsp/libhexagon_nn_skel.so
+vendor/lib/rfsa/adsp/libscveObjectSegmentation_skel.so
+vendor/lib/rfsa/adsp/libscveT2T_skel.so
+vendor/lib/rfsa/adsp/libsnpe_dsp_v66_domains_v2_skel.so
+vendor/lib/rfsa/adsp/libsns_device_mode_skel.so
+vendor/lib/rfsa/adsp/libsns_low_lat_stream_skel.so
+vendor/lib/rfsa/adsp/libsomc_alfortlpserv_skel.so
+vendor/lib/rfsa/adsp/libsomc_cornfrosty_skel.so
